@@ -1,22 +1,33 @@
 import os
 
-# check current directory
-print(os.getcwd())
+def currentDirectory():
+    print("Current working directory:", os.getcwd())
 
-# read the files from a folder
-folderpath = r"C:\Users\CIRT\PycharmProjects\File Separator\Files"
+currentFilePath = currentDirectory()
 
-# change directory to my files
-os.chdir(folderpath)
-print(os.getcwd())
+# read the files from the folder
+folderpath = r"C:\Users\CIRT-DF\Desktop\Case Files - simple"
 
-# check files in the folder
-print(os.listdir())
+def changeDirectory():
+    # read the files from the folder
+    folderpath = r"C:\Users\CIRT-DF\Desktop\Case Files - simple"
+    os.chdir(folderpath)
+    print("New directory:",os.getcwd())
 
-# get extension
-list_extension = []
-for f in os.listdir():
-    extension = f.split(".")[-1]   # -1 last element of the list
-    list_extension.append(extension)
+newFilePath = changeDirectory()
 
-print(list_extension)
+
+def fileAndExtension():
+    print("List of the file names:", os.listdir())
+
+    list_extension = []
+    for fl in os.listdir():
+        extension = fl.split(".")[-1]  # -1 last element of the list
+        list_extension.append(extension)
+
+    list_extension = list(set(list_extension))  # Remove duplicate but garbage value remains
+    print("List of the extensions:", list_extension)
+
+    print(len(list_extension))
+
+fileExtension = fileAndExtension()
