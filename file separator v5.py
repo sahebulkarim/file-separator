@@ -1,43 +1,34 @@
-# edited v5
+# edited v5.5
 import os
 
-wd = os.getcwd()
-alll = os.listdir(wd)
+fileDir = os.getcwd()
+allFile = os.listdir(fileDir)
 
 files = []
-dirs = []
-for dirr in alll:
-    path = os.path.join(wd, dirr)
+directory = []
+for dir in allFile:
+    path = os.path.join(fileDir, dir)
     if os.path.isdir(path):
-        dirs.append(dirr)
+        directory.append(dir)
 
-for file in alll:
-    path = os.path.join(wd, file)
-    if file not in dirs:
+for file in allFile:
+    path = os.path.join(fileDir, file)
+    if file not in directory:
         files.append(file)
 
 for file in files:
-    path = os.path.join(wd, file)
+    path = os.path.join(fileDir, file)
     try:
         name, ext = file.split('.')
         if ext:
-            w_dir = os.path.join(wd, ext)
+            w_dir = os.path.join(fileDir, ext)
 
-            if ext not in dirs:
+            if ext not in directory:
                 os.mkdir(w_dir)
-                dirs.append(ext)
+                directory.append(ext)
 
-            w_files = os.listdir(w_dir)
-            suffix = ''
-            i = 0;
-            while file in w_files:
-                i += 1
-                suffix = '__' + 'i'
-                file = name + suffix + "." + ext
+            destination = os.path.join(fileDir, ext, file)
+            os.rename(path, destination)
 
-            dest = os.path.join(wd, ext, file)
-            os.rename(path, dest)
     except:
         print("error")
-
-
